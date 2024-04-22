@@ -1,0 +1,211 @@
+"","constructors_name","race_wins","fastest_laps"
+"1","Ferrari",243,92
+"2","McLaren",179,50
+"3","Mercedes",125,94
+"4","Williams",114,7
+"5","Red Bull",104,92
+"6","Team Lotus",45,0
+"7","Renault",35,14
+"8","Benetton",27,0
+"9","Brabham",23,0
+"10","Tyrrell",23,0
+"11","Lotus-Climax",22,0
+"12","BRM",17,0
+"13","Cooper-Climax",12,0
+"14","Alfa Romeo",11,2
+"15","Lotus-Ford",11,0
+"16","Vanwall",10,0
+"17","Ligier",9,0
+"18","Maserati",9,0
+"19","Matra-Ford",9,0
+"20","Brawn",8,4
+"21","Brabham-Repco",8,0
+"22","Kurtis Kraft",5,0
+"23","Jordan",4,0
+"24","McLaren-Ford",4,0
+"25","Honda",3,0
+"26","March",3,0
+"27","Watson",3,0
+"28","Wolf",3,0
+"29","Lotus F1",2,5
+"30","Brabham-Climax",2,0
+"31","Brabham-Ford",2,0
+"32","Cooper",2,0
+"33","Cooper-Maserati",2,0
+"34","Epperly",2,0
+"35","BMW Sauber",1,2
+"36","AlphaTauri",1,1
+"37","Toro Rosso",1,1
+"38","Alpine F1 Team",1,0
+"39","Eagle-Weslake",1,0
+"40","Hesketh",1,0
+"41","Kuzma",1,0
+"42","Lotus-BRM",1,0
+"43","Penske",1,0
+"44","Porsche",1,0
+"45","Racing Point",1,0
+"46","Shadow",1,0
+"47","Stewart",1,0
+"48","Force India",0,5
+"49","Sauber",0,3
+"50","Toyota",0,3
+"51","Haas F1 Team",0,2
+"52","AFM",0,0
+"53","AGS",0,0
+"54","ATS",0,0
+"55","Adams",0,0
+"56","Alta",0,0
+"57","Amon",0,0
+"58","Andrea Moda",0,0
+"59","Apollon",0,0
+"60","Arrows",0,0
+"61","Arzani-Volpini",0,0
+"62","Aston Butterworth",0,0
+"63","Aston Martin",0,0
+"64","BAR",0,0
+"65","BMW",0,0
+"66","BRM-Ford",0,0
+"67","BRP",0,0
+"68","Behra-Porsche",0,0
+"69","Bellasi",0,0
+"70","Boro",0,0
+"71","Brabham-Alfa Romeo",0,0
+"72","Brabham-BRM",0,0
+"73","Bromme",0,0
+"74","Bugatti",0,0
+"75","Caterham",0,0
+"76","Christensen",0,0
+"77","Cisitalia",0,0
+"78","Coloni",0,0
+"79","Connaught",0,0
+"80","Connew",0,0
+"81","Cooper-ATS",0,0
+"82","Cooper-Alfa Romeo",0,0
+"83","Cooper-BRM",0,0
+"84","Cooper-Borgward",0,0
+"85","Cooper-Castellotti",0,0
+"86","Cooper-Ferrari",0,0
+"87","Cooper-Ford",0,0
+"88","Cooper-OSCA",0,0
+"89","Dallara",0,0
+"90","De Tomaso",0,0
+"91","De Tomaso-Alfa Romeo",0,0
+"92","De Tomaso-Ferrari",0,0
+"93","De Tomaso-Osca",0,0
+"94","Deidt",0,0
+"95","Del Roy",0,0
+"96","Derrington",0,0
+"97","Dunn",0,0
+"98","EMW",0,0
+"99","ENB",0,0
+"100","ERA",0,0
+"101","Eagle-Climax",0,0
+"102","Elder",0,0
+"103","Embassy Hill",0,0
+"104","Emeryson",0,0
+"105","Ensign",0,0
+"106","Euro Brun",0,0
+"107","Ewing",0,0
+"108","Ferguson",0,0
+"109","Fittipaldi",0,0
+"110","Fondmetal",0,0
+"111","Footwork",0,0
+"112","Forti",0,0
+"113","Frazer Nash",0,0
+"114","Fry",0,0
+"115","Gilby",0,0
+"116","Gordini",0,0
+"117","HRT",0,0
+"118","HWM",0,0
+"119","Hall",0,0
+"120","Iso Marlboro",0,0
+"121","JBW",0,0
+"122","Jaguar",0,0
+"123","Kauhsen",0,0
+"124","Klenk",0,0
+"125","Kojima",0,0
+"126","LDS",0,0
+"127","LDS-Alfa Romeo",0,0
+"128","LDS-Climax",0,0
+"129","LEC",0,0
+"130","Lambo",0,0
+"131","Lancia",0,0
+"132","Langley",0,0
+"133","Larrousse",0,0
+"134","Lesovsky",0,0
+"135","Leyton House",0,0
+"136","Life",0,0
+"137","Lola",0,0
+"138","Lotus",0,0
+"139","Lotus-Borgward",0,0
+"140","Lotus-Maserati",0,0
+"141","Lotus-Pratt &amp; Whitney",0,0
+"142","Lyncar",0,0
+"143","MBM",0,0
+"144","MF1",0,0
+"145","Maki",0,0
+"146","Manor Marussia",0,0
+"147","March-Alfa Romeo",0,0
+"148","March-Ford",0,0
+"149","Marchese",0,0
+"150","Martini",0,0
+"151","Marussia",0,0
+"152","Matra",0,0
+"153","McGuire",0,0
+"154","McLaren-Alfa Romeo",0,0
+"155","McLaren-BRM",0,0
+"156","McLaren-Serenissima",0,0
+"157","Merzario",0,0
+"158","Meskowski",0,0
+"159","Milano",0,0
+"160","Minardi",0,0
+"161","Moore",0,0
+"162","Nichels",0,0
+"163","OSCA",0,0
+"164","Olson",0,0
+"165","Onyx",0,0
+"166","Osella",0,0
+"167","Pacific",0,0
+"168","Pankratz",0,0
+"169","Parnelli",0,0
+"170","Pawl",0,0
+"171","Phillips",0,0
+"172","Politoys",0,0
+"173","Prost",0,0
+"174","Protos",0,0
+"175","RAM",0,0
+"176","RE",0,0
+"177","Rae",0,0
+"178","Rebaque",0,0
+"179","Rial",0,0
+"180","Scarab",0,0
+"181","Schroeder",0,0
+"182","Scirocco",0,0
+"183","Shadow-Ford",0,0
+"184","Shadow-Matra",0,0
+"185","Shannon",0,0
+"186","Sherman",0,0
+"187","Simca",0,0
+"188","Simtek",0,0
+"189","Snowberger",0,0
+"190","Spirit",0,0
+"191","Spyker",0,0
+"192","Spyker MF1",0,0
+"193","Stebro",0,0
+"194","Stevens",0,0
+"195","Super Aguri",0,0
+"196","Surtees",0,0
+"197","Sutton",0,0
+"198","Talbot-Lago",0,0
+"199","Tec-Mec",0,0
+"200","Tecno",0,0
+"201","Theodore",0,0
+"202","Token",0,0
+"203","Toleman",0,0
+"204","Trevis",0,0
+"205","Trojan",0,0
+"206","Turner",0,0
+"207","Veritas",0,0
+"208","Virgin",0,0
+"209","Wetteroth",0,0
+"210","Zakspeed",0,0
