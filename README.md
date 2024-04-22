@@ -586,5 +586,278 @@ The [constructor stats](https://github.com/jose-argu/Formula-1/blob/03ee4c2ef88e
 
 
 
+## Results 
 
+
+### Lap Times
+
+
+After our analysis of our data, we now attempt to draw results beginning with the lap time data. 
+
+
+``` r
+most_recent_lap_times <- Lap_times_and_info %>% 
+  group_by(circuit_name) %>% 
+  filter(year == max(year))
+
+
+oldest_lap_times <- Lap_times_and_info %>% 
+  group_by(circuit_name) %>% 
+  filter(year == min(year))
+
+
+most_recent_lap_times <- most_recent_lap_times %>% 
+  select("circuit_name", "year", "lap_time", "lap_milliseconds")
+
+oldest_lap_times <- oldest_lap_times %>% 
+  select("circuit_name", "year", "lap_time", "lap_milliseconds")
+
+
+colnames(most_recent_lap_times)[colnames(most_recent_lap_times) == "year"] <- "MR_year"
+colnames(most_recent_lap_times)[colnames(most_recent_lap_times) == "lap_time"] <- "MR_lap_time"
+colnames(most_recent_lap_times)[colnames(most_recent_lap_times) == "lap_milliseconds"] <- "MR_lap_milliseconds"
+
+colnames(oldest_lap_times)[colnames(oldest_lap_times) == "year"] <- "oldest_year"
+colnames(oldest_lap_times)[colnames(oldest_lap_times) == "lap_time"] <- "oldest_lap_time"
+colnames(oldest_lap_times)[colnames(oldest_lap_times) == "lap_milliseconds"] <- "oldest_lap_milliseconds"
+
+
+
+MR_average_lap_times <- most_recent_lap_times %>% 
+  group_by(circuit_name, MR_year) %>% 
+  summarise(MR_avg_lap_time = mean(MR_lap_milliseconds))
+```
+
+    ## `summarise()` has grouped output by 'circuit_name'. You can override using the
+    ## `.groups` argument.
+
+``` r
+oldest_average_lap_times <- oldest_lap_times %>% 
+  group_by(circuit_name, oldest_year) %>% 
+  summarise(oldest_average_lap_time = mean(oldest_lap_milliseconds))
+```
+
+    ## `summarise()` has grouped output by 'circuit_name'. You can override using the
+    ## `.groups` argument.
+
+``` r
+MR_fastest_lap_time <- most_recent_lap_times %>% 
+  group_by(circuit_name, MR_year) %>% 
+  summarise(MR_fastest_lap_time = min(MR_lap_milliseconds))
+```
+
+    ## `summarise()` has grouped output by 'circuit_name'. You can override using the
+    ## `.groups` argument.
+
+``` r
+oldest_fastest_lap_time <-oldest_lap_times %>% 
+  group_by(circuit_name, oldest_year) %>% 
+  summarise(oldest_fastest_lap_time = min(oldest_lap_milliseconds))
+```
+
+    ## `summarise()` has grouped output by 'circuit_name'. You can override using the
+    ## `.groups` argument.
+
+``` r
+average_lap_time_difference <- left_join(MR_average_lap_times, oldest_average_lap_times, by = "circuit_name")
+
+# average_lap_time_difference used for visualizations
+
+head(average_lap_time_difference)
+```
+
+    ## # A tibble: 6 × 5
+    ## # Groups:   circuit_name [6]
+    ##   circuit_name        MR_year MR_avg_lap_time oldest_year oldest_average_lap_t…¹
+    ##   <chr>                 <int>           <dbl>       <int>                  <dbl>
+    ## 1 70th Anniversary G…    2020          93384.        2020                 93384.
+    ## 2 Abu Dhabi Grand Pr…    2022          92205.        2009                103623.
+    ## 3 Argentine Grand Pr…    1998          92766.        1996                 98447.
+    ## 4 Australian Grand P…    2023         147649.        1996                 99021.
+    ## 5 Austrian Grand Prix    2023          73294.        1997                 74986.
+    ## 6 Azerbaijan Grand P…    2023         110503.        2017                149325.
+    ## # ℹ abbreviated name: ¹​oldest_average_lap_time
+
+``` r
+fastest_lap_time_difference <- left_join(MR_fastest_lap_time, oldest_fastest_lap_time, by = "circuit_name")
+
+
+# fastest_lap_time_difference used for visualizations
+
+head(fastest_lap_time_difference)
+```
+
+    ## # A tibble: 6 × 5
+    ## # Groups:   circuit_name [6]
+    ##   circuit_name    MR_year MR_fastest_lap_time oldest_year oldest_fastest_lap_t…¹
+    ##   <chr>             <int>               <int>       <int>                  <int>
+    ## 1 70th Anniversa…    2020               88451        2020                  88451
+    ## 2 Abu Dhabi Gran…    2022               88391        2009                 100279
+    ## 3 Argentine Gran…    1998               88179        1996                  89413
+    ## 4 Australian Gra…    2023               80235        1996                  93421
+    ## 5 Austrian Grand…    2023               67012        1997                  71814
+    ## 6 Azerbaijan Gra…    2023              103370        2017                 103441
+    ## # ℹ abbreviated name: ¹​oldest_fastest_lap_time
+
+
+Using the [average lap time difference](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualization%20Datasets/average_lap_time_difference.csv) and our [fastest lap time difference](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualization%20Datasets/fastest_lap_time_difference.csv) data, we create our visualizations and draw our conclusions. For an interactive dashboard click [average lap time difference](https://public.tableau.com/app/profile/jose.argueta7119/viz/AverageLapTimeDifferencefromMostRecentRacetoOldestRace/AverageLapTimeDifference) or [fastest lap time difference](https://public.tableau.com/app/profile/jose.argueta7119/viz/FastestLapTimeDifferencefromMostRecentRacetoOldestRace/FastestLapTimeDifference).
+
+
+![Average Lap Time Difference From Most Recent Race to Oldest Race](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualizations/Average%20Lap%20Time%20Difference.png)
+
+21 of 42 Grand Prix appear to have gotten quicker. The three races that have improved the most in average lap time are the:
+
+* Korean Grand Prix
+* Saudi Arabian Grand Prix
+* Azerbaijan Grand Prix
+
+
+![Fastest Lap Time Difference From Most Recent Race to Oldest Race](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualizations/Fastest%20Lap%20Time%20Difference.png)
+
+
+15 of 42 Grand Prix appear to have gotten slower. The three circuits with laps that appear to have gotten slowest over time are the:
+
+* Australian Grand Prix
+* United States Grand Prix
+* European Grand Prix 
+
+
+
+
+### Race Times
+
+Next, we want to see the time difference between the most recent race time and the oldest recorded race time. 
+
+``` r
+MR_race_times <- race_times_summarized %>% 
+  group_by(circuit_name) %>% 
+  filter(year == max(year))
+
+
+oldest_race_times <- race_times_summarized %>% 
+  group_by(circuit_name) %>% 
+  filter(year == min(year))
+
+
+colnames(MR_race_times)[colnames(MR_race_times) == "year"] <- "MR_year"
+colnames(MR_race_times)[colnames(MR_race_times) == "avg_race_time_milliseconds"] <- "MR_avg_race_time_milliseconds"
+colnames(MR_race_times)[colnames(MR_race_times) == "fastest_race_time_milliseconds"] <- "MR_fastest_race_time_milliseconds"
+colnames(MR_race_times)[colnames(MR_race_times) == "slowest_race_time_milliseconds"] <- "MR_slowest_race_time_milliseconds"
+
+colnames(oldest_race_times)[colnames(oldest_race_times) == "year"] <- "oldest_year"
+colnames(oldest_race_times)[colnames(oldest_race_times) == "avg_race_time_milliseconds"] <- "oldest_avg_race_time_milliseconds"
+colnames(oldest_race_times)[colnames(oldest_race_times) == "fastest_race_time_milliseconds"] <- "oldest_fastest_race_time_milliseconds"
+colnames(oldest_race_times)[colnames(oldest_race_times) == "slowest_race_time_milliseconds"] <- "oldest_slowest_race_time_milliseconds"
+
+
+race_time_differences <- left_join(MR_race_times, oldest_race_times, by = "circuit_name")
+
+
+# race_time_differences used for visualizations
+```
+
+To create the following visualization we use the [race time differences](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualization%20Datasets/race_time_differences.csv) data. For an interactive dashboard click [here](https://public.tableau.com/app/profile/jose.argueta7119/viz/RaceTimeDifferencesfromMostRecentRacetoOldestRace/AverageRaceTimeDifferencesFromMostRecenttoOldestRace).
+
+
+![Average Race Time Difference from Most Recent Race to Oldest Race](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualizations/Average%20Race%20Time%20Differences%20From%20Most%20Recent%20to%20Oldest%20Race.png)
+
+13 of 40 races appear to have gotten quicker with a negative delta average race time difference. The 3 races that have gotten the quickest are the:
+
+* Korean Grand Prix
+* Saudi Arabian Grand Prix
+* Azerbaijan Grand Prix
+
+
+21 of 40 races have gotten slower from the oldest race to the most recent race, with the top 3 slowest average race time difference being: 
+
+* Japanese Grand Prix
+* Australian Grand Prix
+* German Grand Prix 
+
+
+![Fastest Race Time Difference from Most Recent Race to Oldest Race](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualizations/Fastest%20Race%20Tine%20Differences%20From%20Most%20Recent%20Race%20to%20Oldest%20Race.png)
+
+
+13 of 40 races have seen the fastest race time improve from the oldest race to the most recent race. 
+
+
+21 of 40 races have see the fastest race time get slower from the oldest race to the most recent race.  
+
+
+
+
+### Pit Stops
+
+We measure the change in duration of pitstops over time by circuit. 
+
+``` r
+oldest_pit_stops <- pit_stops_and_info %>% 
+  group_by(circuit_name) %>% 
+  filter(year == min(year))
+
+
+MR_pit_stop <- pit_stops_and_info %>% 
+  group_by(circuit_name) %>% 
+  filter(year == max(year))
+  
+
+
+colnames(oldest_pit_stops)[colnames(oldest_pit_stops) == "year"] <- "oldest_year"
+colnames(oldest_pit_stops)[colnames(oldest_pit_stops) == "duration"] <- "oldest_duration"
+colnames(oldest_pit_stops)[colnames(oldest_pit_stops) == "pit_stop_milliseconds"] <- "oldest_pit_stop_milliseconds"
+
+colnames(MR_pit_stop)[colnames(MR_pit_stop) == "year"] <- "MR_year"
+colnames(MR_pit_stop)[colnames(MR_pit_stop) == "duration"] <- "MR_duration"
+colnames(MR_pit_stop)[colnames(MR_pit_stop) == "pit_stop_milliseconds"] <- "MR_pit_stop_milliseconds"
+
+
+
+oldest_pit_stop_info <- oldest_pit_stops %>% 
+  group_by(circuit_name, oldest_year) %>% 
+  summarise(oldest_avg_pit_stop_duration_ms = mean(oldest_pit_stop_milliseconds), oldest_fastest_pit_stop_duration_ms = min(oldest_pit_stop_milliseconds))
+```
+
+    ## `summarise()` has grouped output by 'circuit_name'. You can override using the
+    ## `.groups` argument.
+
+``` r
+MR_pit_stop_info <- MR_pit_stop %>% 
+  group_by(circuit_name, MR_year) %>% 
+  summarise(MR_avg_pit_stop_duration_ms = mean(MR_pit_stop_milliseconds), MR_fastest_pit_stop_duration = min(MR_pit_stop_milliseconds))
+```
+
+    ## `summarise()` has grouped output by 'circuit_name'. You can override using the
+    ## `.groups` argument.
+
+``` r
+pit_stop_duration_difference <- left_join(MR_pit_stop_info, oldest_pit_stop_info, by = "circuit_name")
+
+
+# pit_stop_duration_difference used for visualizations
+```
+
+Our [pit stop duration difference](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualization%20Datasets/pit_stop_duration_difference.csv) data creates the following visualizations. For an interactive dashboard click [here](https://public.tableau.com/app/profile/jose.argueta7119/viz/PitStopDurationDifferenceFromMostRecentRacetoOldestRace/AveragePitStopDurationFromMostRecentRacetoOldestRace#1).
+
+
+![Average Pit Stop Duration Difference from Most Recent Race to Oldest Race](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualizations/Average%20Pit%20Stop%20Duration%20From%20Most%20Recent%20Race%20to%20Oldest%20Race.png)
+
+For the most part, the average pit stop duration time is very similar among all circuits except for the following, which may indicate an accident at the most recent grand prix or at the oldest grand prix for that circuit:
+
+* Australian Grand Prix
+* Japanese Grand Prix
+* French Grand Prix
+* Italian Grand Prix
+* Azerbaijan Grand Prix
+* Saudi Arabian Grand Prix
+
+
+![Fastest Pit Stop Duration Difference from Most Recent Race to Oldest Race](https://github.com/jose-argu/Formula-1/blob/3e3a886e7b72ab7345b8b2fd08cb7a577af55caa/F1%20Results%20Visualizations/Fastest%20Pit%20Stop%20Duration%20From%20Most%20Recent%20Race%20to%20Oldest%20Race.png)
+
+
+
+
+The biggest surprise might be the fastest pit stop duration time from the oldest grand prix to the most recent grand prix, as an overwhelming amount of circuits have actually had the pit stop duration time increase rather than decrease. 
+
+* 24 of 39 circuits have had their pit stop duration time increase.
+* 9 of 30 circuits have had their pit stop duration time decrease.
 
